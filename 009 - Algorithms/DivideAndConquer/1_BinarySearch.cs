@@ -10,24 +10,33 @@ namespace _009___Algorithms.DivideAndConquer
     {
         internal static void Solution()
         {
-            int[] arr = new int[] { 1, 4, 6, 8, 10, 15, 25, 28, 35, 42, 44, 46, 50 };
-            Console.WriteLine(BinarySearch(arr,11));
+            List<int> lst = new List<int> { 1, 4, 6, 8, 10, 15, 25, 28, 35, 42, 44, 46, 50 };
+
+            //Console.WriteLine(BinarySearch(lst,55));
+
+            Insert(lst,5);
+            Insert(lst, 15);
+            Insert(lst, 55);
+            Insert(lst, 27);
+            Insert(lst, 10);
+            Insert(lst, 38);
         }
 
-        private static int BinarySearch(int[] array,int value)
+        private static int BinarySearch(List<int> lst, int value)
         {
             int l = 0;
-            int h = array.Length;
+            int r = lst.Count-1;
 
-            while(l <= h)
+            while(l <= r)
             {
-                int mid = (l + h) /2;
+                int mid = (l + r) /2;
+                
 
-                if(array[mid] > value)
+                if(lst[mid] > value)
                 {
-                    h = mid - 1;
+                    r = mid - 1;
                 }
-                else if (array[mid] < value)
+                else if (lst[mid] < value)
                 {
                     l = mid + 1;
                 }
@@ -38,6 +47,52 @@ namespace _009___Algorithms.DivideAndConquer
             }
 
             return -1;
+        }
+
+        //INSERT ELEMENT TO THAT ARRAY USING BINARY SEARCH
+        private static void Insert(List<int> lst, int value)
+        {
+            int l = 0;
+            int r = lst.Count-1;
+
+            bool found = false;
+
+            while (l <= r)
+            {
+                int mid = (l + r) / 2;
+
+                if (lst[mid] > value)
+                {
+                    r = mid - 1;
+                }
+                else if (lst[mid] < value)
+                {
+                    l = mid + 1;
+                }
+                else
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+
+            if (!found)
+            {
+                if(l < lst.Count)
+                {
+                    lst.Insert(l, value);
+                }
+                else
+                {
+                    lst.Add(value);
+                }
+                Console.WriteLine(string.Join(" ",lst));
+            }
+            else
+            {
+                Console.WriteLine("exist");
+            }
         }
     }
 }
