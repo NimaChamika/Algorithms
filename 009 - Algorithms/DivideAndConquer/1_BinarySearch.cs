@@ -12,7 +12,7 @@ namespace _009___Algorithms.DivideAndConquer
         {
             List<int> lst = new List<int> { 1, 4, 6, 8, 10, 15, 25, 28, 35, 42, 44, 46, 50 };
 
-            //Console.WriteLine(BinarySearch(lst,55));
+            Console.WriteLine(BinarySearch(lst,55));
 
             Insert(lst,5);
             Insert(lst, 15);
@@ -79,14 +79,7 @@ namespace _009___Algorithms.DivideAndConquer
 
             if (!found)
             {
-                if(l < lst.Count)
-                {
-                    lst.Insert(l, value);
-                }
-                else
-                {
-                    lst.Add(value);
-                }
+                lst.Insert(l, value);
                 Console.WriteLine(string.Join(" ",lst));
             }
             else
